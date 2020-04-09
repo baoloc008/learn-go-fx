@@ -10,6 +10,7 @@ Basic DI is straightforward in Go:
 - https://blog.huyage.dev/posts/simple-dependency-injection-in-go
 - https://ewanvalentine.io/my-thoughts-on-uber-fx
 - https://pkg.go.dev/go.uber.org/fx?tab=doc
+- https://www.sohamkamani.com/golang/options-pattern
 
 ## Note
 - Fx là dependency injection framework, vì là framework nên cần viết code theo cấu trúc của nó
@@ -25,3 +26,4 @@ Basic DI is straightforward in Go:
 - `func Invoke`: gọi hàm khi app start, các tham số được dùng từ `fx.Provide`
     - Invocations được gọi eagerly
     - Invocations có thể return error, khi return các giá trị khác sẽ bị bỏ qua
+- `func Options`: converts a collection of Options into a single Option. Có thể dùng để nhóm nhiều module nhỏ lại thành một
