@@ -8,21 +8,30 @@ import (
 	"time"
 )
 
+type ServerConfig struct {
+	listenAddr string
+}
+
+func NewServerConfig() *ServerConfig {
+	return &ServerConfig{listenAddr: ":9620"}
+}
+
 func main() {
-	app := fx.New(fx.Invoke(startServer))
+	app := fx.New(
+		fx.Provide(NewServerConfig),
+		fx.Invoke(startServer),
+	)
 	app.Run()
 }
 
-var listenAddr = ":9620"
-
-func startServer(lifecycle fx.Lifecycle) {
+func startServer(lifecycle fx.Lifecycle, config *ServerConfig) {
 	router := http.NewServeMux()
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello"))
 	})
 
 	srv := http.Server{
-		Addr:    listenAddr,
+		Addr:    config.listenAddr,
 		Handler: router,
 	}
 
