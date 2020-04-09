@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func main() {
+func test() {
 	// A module that provides a HTTP server depends on
 	// the $PORT environment variable. If the variable
 	// is unset, the module returns an fx.Error option.
